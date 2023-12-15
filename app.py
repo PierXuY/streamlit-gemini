@@ -58,7 +58,6 @@ if chat_message:
     res_area = st.chat_message("assistant").empty()
 
     if slelect_model == "gemini-pro-vision":
-        vision_message =
         if "image_bytes" in globals():
             vision_message =  [chat_message, Image.open(io.BytesIO(image_bytes))]
         else:
