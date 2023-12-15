@@ -1,2 +1,2 @@
 # streamlit-gemini
-A simple application calling the Google Gemini API, built on Streamlit.
+Set `key = "YOUR_GEMINI_API_KEY"` in secrets.
