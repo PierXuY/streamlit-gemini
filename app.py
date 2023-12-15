@@ -16,7 +16,7 @@ with st.sidebar:
         else:
             st.error("Missing API key.")
     
-    select_model = st.selectbox("Select Model", ["gemini-pro", "gemini-pro-vision"])
+    select_model = st.selectbox("Select model", ["gemini-pro", "gemini-pro-vision"])
     if select_model == "gemini-pro-vision":
         uploaded_image = st.file_uploader(
             "upload image",
