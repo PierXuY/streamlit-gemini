@@ -7,7 +7,7 @@ import google.ai.generativelanguage as glm
 with st.sidebar:
     st.title("Gemini API")
     
-    api_key = st.input("API key")
+    api_key = st.text_input("API key")
     if api_key:
         genai.configure(api_key=api_key)
     else:
