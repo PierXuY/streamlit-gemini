@@ -4,10 +4,15 @@ import streamlit as st
 import google.generativeai as genai
 import google.ai.generativelanguage as glm
 
-genai.configure(api_key=st.secrets["key"])
-
 with st.sidebar:
     st.title("Gemini API")
+    
+    api_key = st.input("API key")
+    if api_key:
+        genai.configure(api_key=api_key)
+    else:
+        genai.configure(api_key=st.secrets["api_key"])
+    
     slelect_model = st.selectbox("Select Model", ["gemini-pro", "gemini-pro-vision"])
     if slelect_model == "gemini-pro-vision":
         uploaded_image = st.file_uploader(
