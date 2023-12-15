@@ -26,7 +26,8 @@ with st.sidebar:
 
 
 def get_response(messages, model=model):
-    res = model.generate_content(messages, stream=True)
+    res = model.generate_content(messages, stream=True,
+                                safety_settings={'HARASSMENT':'block_none'})
     return res
 
 if "messages" not in st.session_state:
