@@ -58,6 +58,9 @@ if chat_message:
         vision_message = [chat_message]
         if "image_bytes" in globals():
             vision_message.append(Image.open(io.BytesIO(image_bytes)))
+        else:
+            model = genai.GenerativeModel("gemini-pro")
+            st.warning("There are no images uploaded, so the results below are returned by the gemini-pro model.")
         res = get_response(vision_message)
     else:
         input_parts = [chat_message]
