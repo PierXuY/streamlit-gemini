@@ -11,7 +11,10 @@ with st.sidebar:
     if api_key:
         genai.configure(api_key=api_key)
     else:
-        genai.configure(api_key=st.secrets["api_key"])
+        if "api_key" in st.secrets:
+            genai.configure(api_key=st.secrets["api_key"])
+        else:
+            st.error("Missing API key")
     
     slelect_model = st.selectbox("Select Model", ["gemini-pro", "gemini-pro-vision"])
     if slelect_model == "gemini-pro-vision":
@@ -55,17 +58,17 @@ if chat_message:
     res_area = st.chat_message("assistant").empty()
 
     if slelect_model == "gemini-pro-vision":
-        vision_message = [chat_message]
+        vision_message =
         if "image_bytes" in globals():
-            vision_message.append(Image.open(io.BytesIO(image_bytes)))
+            vision_message =  [chat_message, Image.open(io.BytesIO(image_bytes))]
         else:
+            vision_message = [{"role": "user", "parts": [chat_message]}]
             model = genai.GenerativeModel("gemini-pro")
             st.warning("There are no images uploaded, so the results below are returned by the gemini-pro model.")
         res = get_response(vision_message)
     else:
-        input_parts = [chat_message]
         messages.append(
-            {"role": "user", "parts": input_parts},
+            {"role": "user", "parts":  [chat_message]},
         )
         res = get_response(messages)
 
