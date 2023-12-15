@@ -62,9 +62,8 @@ if chat_message:
             vision_message =  [chat_message, Image.open(io.BytesIO(image_bytes))]
         else:
             vision_message = [{"role": "user", "parts": [chat_message]}]
-            model = genai.GenerativeModel("gemini-pro")
             st.warning("There are no images uploaded, so the results below are returned by the gemini-pro model.")
-        res = get_response(vision_message)
+        res = get_response(vision_message, model=genai.GenerativeModel("gemini-pro"))
     else:
         messages.append(
             {"role": "user", "parts":  [chat_message]},
